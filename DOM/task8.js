@@ -12,6 +12,11 @@ function addItem(e)
     li.className= 'list-group-item';
     li.appendChild(document.createTextNode(newItem));
 
+    //doing task9 adding descrption
+    var descrip= document.getElementById('description').value;
+    li.appendChild(document.createTextNode("-"+ descrip));
+
+
     var deleteBtn= document.createElement('button');
     deleteBtn.className= 'btn btn-danger btn-sm float-right delete';
     deleteBtn.appendChild(document.createTextNode('x'));
@@ -37,3 +42,45 @@ function removeItem(e)
         }
     }
 }
+
+//FILTER
+var filter= document.getElementById('filter');
+
+filter.addEventListener('keyup',filterItems);
+
+// function filterItems(e)
+// {
+//     var text= e.target.value.toLowerCase();
+//     var items= itemList.getElementsByTagName('li');
+//     Array.from(items).forEach(function(item){
+//         var itemName= item.firstChild.textContent;
+//         if(itemName.toLocaleLowerCase().indexOf(text) != -1)
+//         {
+//             item.style.display= 'block';
+//         }
+//         else
+//         {
+//             item.style.display= 'none';
+//         }
+//     });
+// }
+
+//filtering with description
+function filterItems(e)
+{
+    var text= e.target.value.toLowerCase();
+    var items= itemList.getElementsByTagName('li');
+    Array.from(items).forEach(function(item){
+        var itemName= item.firstChild.textContent;
+        var descriptionName= item.childNodes[1].textContent;
+        if(itemName.toLowerCase().indexOf(text) != -1 || descriptionName.toLowerCase().indexOf(text) != -1)
+        {
+            item.style.display= 'block';
+        }
+        else
+        {
+            item.style.display= 'none';
+        }
+    });
+}
+
