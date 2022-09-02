@@ -27,12 +27,21 @@ function onSubmit(e)
         }
 
         let inputData_serialized= JSON.stringify(inputData);
-        localStorage.setItem('userDetails',inputData_serialized);
+        localStorage.setItem(inputData.Email,inputData_serialized);
 
-        //let inputData_deserialized= JSON.parse(localStorage.getItem('inputData'));
+        
+
+        addUserOnScreen(inputData);
 
         //clear field
         nameInput.value='';
         emailInput.value='';
     }
+}
+
+function addUserOnScreen(user)
+{
+    let parentNode= document.getElementById('userList');
+    let childHTML= `<li>  ${user.Name} : ${user.Email} </li>`;
+    parentNode.innerHTML += childHTML;
 }
