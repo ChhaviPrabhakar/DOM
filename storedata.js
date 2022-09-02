@@ -20,8 +20,16 @@ function onSubmit(e)
     }
     else
     {
-        var text= (`${nameInput.value} : ${emailInput.value}`);
-        localStorage.setItem('userDetails',text);
+        //var text= (`${nameInput.value} : ${emailInput.value}`);
+        let inputData= {
+            Name: nameInput.value,
+            Email: emailInput.value
+        }
+
+        let inputData_serialized= JSON.stringify(inputData);
+        localStorage.setItem('userDetails',inputData_serialized);
+
+        //let inputData_deserialized= JSON.parse(localStorage.getItem('inputData'));
 
         //clear field
         nameInput.value='';
