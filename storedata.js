@@ -33,15 +33,45 @@ function onSubmit(e)
 
         addUserOnScreen(inputData);
 
-        //clear field
-        nameInput.value='';
-        emailInput.value='';
+        // //clear field
+        // nameInput.value='';
+        // emailInput.value='';
     }
 }
 
 function addUserOnScreen(user)
 {
+    if(localStorage.getItem(user.Email) !== null)
+    {
+        removeUserFromScreen(user.Email);
+    }
     let parentNode= document.getElementById('userList');
-    let childHTML= `<li>  ${user.Name} : ${user.Email} </li>`;
+    let childHTML= `<li id=${user.Email}> ${user.Name} : ${user.Email} 
+    <button onclick= deleteUser('${user.Email}')> del </button>
+    <button onclick= editUser(${user.Name},'${user.Email}')> edit </button>
+    </li>`;
     parentNode.innerHTML += childHTML;
+}
+
+function deleteUser(emailID)
+{
+    localStorage.removeItem(emailID);
+    removeUserFromScreen(emailID);
+}
+
+function removeUserFromScreen(emailID)
+{
+    let parentNode= document.getElementById('userList');
+    childNodeToBedeleted= document.getElementById(emailID);
+    if(childNodeToBedeleted)
+    {
+        parentNode.removeChild(childNodeToBedeleted);
+    }
+}
+
+function editUser(emailID,name)
+{
+    document.getElementById('name')= name;
+    document.getElementById('email')= emailID;
+    deleteUser(emailID);
 }
