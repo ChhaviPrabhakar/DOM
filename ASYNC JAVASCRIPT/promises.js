@@ -41,97 +41,97 @@ function deletePost() {
     });
 }
 
-// createPost({ title: 'Post three', body: 'This is post three' })
-//     .then(() => {
-//         getPosts();
-//         deletePost().then(() => {
-//             getPosts();
-//             deletePost().then(() => {
-//                 getPosts();
-//                 deletePost().then(() => {
-//                     getPosts();
-//                     deletePost().then(() => {})
-//                     .catch(err => {
-//                         createPost({ title: 'Post four', body: 'This is post four' }).then(() => {
-//                             getPosts();
-//                             deletePost().then(() => {
-//                                 getPosts();
-//                             }).catch(err => console.log(err))
-//                         })
-//                     })
-//                 })
-//             })
-//         })
-//     }).catch(err => console.log(err))
+createPost({ title: 'Post three', body: 'This is post three' })
+    .then(() => {
+        getPosts();
+        deletePost().then(() => {
+            getPosts();
+            deletePost().then(() => {
+                getPosts();
+                deletePost().then(() => {
+                    getPosts();
+                    deletePost().then(() => {})
+                    .catch(err => {
+                        createPost({ title: 'Post four', body: 'This is post four' }).then(() => {
+                            getPosts();
+                            deletePost().then(() => {
+                                getPosts();
+                            }).catch(err => console.log(err))
+                        })
+                    })
+                })
+            })
+        })
+    }).catch(err => console.log(err))
 
-// const promise1 = Promise.resolve('Hello World');
-// const promise2 = 10;
-// const promise3 = new Promise((resolve,reject) =>
-// setTimeout(resolve,2000,'GoodBye'));
+const promise1 = Promise.resolve('Hello World');
+const promise2 = 10;
+const promise3 = new Promise((resolve,reject) =>
+setTimeout(resolve,2000,'GoodBye'));
 
-// Promise.all([promise1, promise2, promise3]).then(values => console.log(values));
+Promise.all([promise1, promise2, promise3]).then(values => console.log(values));
 
-// const user = {
-//     username: 'Chhavi',
-//     lastActivityTime: '16th of oct'
-// }
-
-// function updateLastActivityTime() {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             user.lastActivityTime = new Date().getTime();
-//             resolve(user.lastActivityTime);
-//         },1000);
-//     });
-// }
-
-// function userUpdatesPost() {
-//     Promise.all([createPost({ title: 'Post five', body: 'This is post five' }), updateLastActivityTime()])
-//     .then(([crtPost, updtLasstactTime]) => {
-//         console.log(crtPost, updtLasstactTime)
-//     })
-//     .catch(err => console.log(err))
-// }
-// userUpdatesPost();
-
-
-// Async / Await
-async function init() {
-    await createPost({ title: 'Post three', body: 'This is post three' });
-
-    getPosts();
+const user = {
+    username: 'Chhavi',
+    lastActivityTime: '16th of oct'
 }
-init();
 
-async function getColdrinks() {
-    const getCD = await new Promise((resolve, reject) => {
+function updateLastActivityTime() {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            var husbandGetButter = true;
-            if(husbandGetButter === true)
-            {
-                resolve('bring Coldrinks');
-            } else {
-                reject('sorry, no CD!');
-            }
-        },2000);
+            user.lastActivityTime = new Date().getTime();
+            resolve(user.lastActivityTime);
+        },1000);
+    });
+}
+
+function userUpdatesPost() {
+    Promise.all([createPost({ title: 'Post five', body: 'This is post five' }), updateLastActivityTime()])
+    .then(([createpost, updtLasstactTime]) => {
+        console.log(createpost, updtLasstactTime)
     })
-    console.log(getCD);
+    .catch(err => console.log(err))
 }
-getColdrinks();
+userUpdatesPost();
 
-async function doingAssignment() {
-    try{
-        getPosts();
-        await deletePost();
-        getPosts();
-        await deletePost();
-        getPosts();
-        await deletePost();
-        getPosts();
-        await deletePost();
-    }catch (err) {
-        console.log(err)
-    }
-}
 
-doingAssignment();
+// // Async / Await
+// async function init() {
+//     await createPost({ title: 'Post three', body: 'This is post three' });
+
+//     getPosts();
+// }
+// init();
+
+// async function getColdrinks() {
+//     const getCD = await new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             var husbandGetButter = true;
+//             if(husbandGetButter === true)
+//             {
+//                 resolve('bring Coldrinks');
+//             } else {
+//                 reject('sorry, no CD!');
+//             }
+//         },2000);
+//     })
+//     console.log(getCD);
+// }
+// getColdrinks();
+
+// async function doingAssignment() {
+//     try{
+//         getPosts();
+//         await deletePost();
+//         getPosts();
+//         await deletePost();
+//         getPosts();
+//         await deletePost();
+//         getPosts();
+//         await deletePost();
+//     }catch (err) {
+//         console.log(err)
+//     }
+// }
+
+// doingAssignment();
