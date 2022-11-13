@@ -26,7 +26,7 @@ function onSubmit(e)
             Email: emailInput.value
         }
 
-        axios.post('https://crudcrud.com/api/8a8feef6d2bf4d1a96ed9b96afba4188/appointmentData', inputData)
+        axios.post('https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData', inputData)
             .then(res => {
                 addUserOnScreen(res.data)
                 console.log(res)
@@ -46,6 +46,25 @@ function onSubmit(e)
         // emailInput.value='';
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    axios.get('https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData')
+        .then(res => {
+            console.log(res)
+
+            for (var i = 0; i < res.data.length; i++) {
+                addUserOnScreen(res.data[i]);
+            }
+        })
+        .catch(err => console.log(err));
+
+    // var arr = Object.keys(localStorage);
+    // for (var i = 0; i < arr.length; i++) {
+    //     var userdetails = JSON.parse(localStorage.getItem(arr[i]));
+    //     addUserOnScreen(userdetails);
+    // }
+})
 
 function addUserOnScreen(user)
 {
