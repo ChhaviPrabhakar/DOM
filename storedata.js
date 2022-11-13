@@ -2,7 +2,7 @@ const myForm = document.querySelector('#my-form');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
-const userList = document.querySelector('#users');
+const userList = document.querySelector('#usersList');
 
 myForm.addEventListener('submit',onSubmit);
 function onSubmit(e)
@@ -26,12 +26,20 @@ function onSubmit(e)
             Email: emailInput.value
         }
 
-        let inputData_serialized= JSON.stringify(inputData);
-        localStorage.setItem(inputData.Email,inputData_serialized);
+        axios.post('https://crudcrud.com/api/8a8feef6d2bf4d1a96ed9b96afba4188/appointmentData', inputData)
+            .then(res => {
+                addUserOnScreen(res.data)
+                console.log(res)
+            })
+            .catch(err => {
+                document.body.innerHTML += "<h4> Something went wrong! </h4>"
+                console.log(err)
+            });
 
-        
 
-        addUserOnScreen(inputData);
+        // let inputData_serialized= JSON.stringify(inputData);
+        // localStorage.setItem(inputData.Email,inputData_serialized);
+        // addUserOnScreen(inputData);
 
         // //clear field
         // nameInput.value='';
@@ -47,8 +55,8 @@ function addUserOnScreen(user)
     }
     let parentNode= document.getElementById('userList');
     let childHTML= `<li id=${user.Email}> ${user.Name} : ${user.Email} 
-    <button onclick= deleteUser('${user.Email}')> del </button>
-    <button onclick= editUser(${user.Name},'${user.Email}')> edit </button>
+    <button onclick= deleteUser('${user.Email}')> Delete </button>
+    <button onclick= editUser('${user.Name}','${user.Email}')> Edit </button>
     </li>`;
     parentNode.innerHTML += childHTML;
 }
