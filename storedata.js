@@ -72,24 +72,41 @@ function addUserOnScreen(user)
     {
         removeUserFromScreen(user.Email);
     }
+    // let parentNode= document.getElementById('userList');
+    // let childHTML= `<li id=${user.Email}> ${user.Name} : ${user.Email} 
+    // <button onclick= deleteUser('${user.Email}')> Delete </button>
+    // <button onclick= editUser('${user.Name}','${user.Email}')> Edit </button>
+    // </li>`;
+    // parentNode.innerHTML += childHTML;
+
     let parentNode= document.getElementById('userList');
-    let childHTML= `<li id=${user.Email}> ${user.Name} : ${user.Email} 
-    <button onclick= deleteUser('${user.Email}')> Delete </button>
-    <button onclick= editUser('${user.Name}','${user.Email}')> Edit </button>
+    let childHTML= `<li id=${user._id}> ${user.Name} : ${user.Email} 
+    <button onclick= deleteUser('${user._id}')> Delete </button>
+    <button onclick= editUser('${user.Name}','${user._id}')> Edit </button>
     </li>`;
     parentNode.innerHTML += childHTML;
 }
 
-function deleteUser(emailID)
+// function deleteUser(emailId)
+// {
+//     localStorage.removeItem(emailID);
+//     removeUserFromScreen(emailID);
+// }
+
+function deleteUser(userId)
 {
-    localStorage.removeItem(emailID);
-    removeUserFromScreen(emailID);
+    axios
+    .delete(`https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData/${userId}`)
+    .then(res => {
+        removeUserFromScreen(userId);
+    })
+    .catch(err => console.log(err));
 }
 
-function removeUserFromScreen(emailID)
+function removeUserFromScreen(userId)
 {
     let parentNode= document.getElementById('userList');
-    childNodeToBedeleted= document.getElementById(emailID);
+    childNodeToBedeleted= document.getElementById(userId);
     if(childNodeToBedeleted)
     {
         parentNode.removeChild(childNodeToBedeleted);
