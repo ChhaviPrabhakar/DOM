@@ -26,7 +26,7 @@ function onSubmit(e)
             Email: emailInput.value
         }
 
-        axios.post('https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData', inputData)
+        axios.post('https://crudcrud.com/api/42376893bb224ca5bcc867bbcb2d6fe8/appointmentData', inputData)
             .then(res => {
                 addUserOnScreen(res.data)
                 console.log(res)
@@ -49,7 +49,7 @@ function onSubmit(e)
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    axios.get('https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData')
+    axios.get('https://crudcrud.com/api/42376893bb224ca5bcc867bbcb2d6fe8/appointmentData')
         .then(res => {
             console.log(res)
 
@@ -82,7 +82,7 @@ function addUserOnScreen(user)
     let parentNode= document.getElementById('userList');
     let childHTML= `<li id=${user._id}> ${user.Name} : ${user.Email} 
     <button onclick= deleteUser('${user._id}')> Delete </button>
-    <button onclick= editUser('${user.Name}','${user._id}')> Edit </button>
+    <button onclick= editUser('${user.Name}','${user.Email}','${user._id}')> Edit </button>
     </li>`;
     parentNode.innerHTML += childHTML;
 }
@@ -93,14 +93,13 @@ function addUserOnScreen(user)
 //     removeUserFromScreen(emailID);
 // }
 
-function deleteUser(userId)
-{
+function deleteUser(userId) {
     axios
-    .delete(`https://crudcrud.com/api/83511d44e6f449caa2bab2b9d987b49a/appointmentData/${userId}`)
-    .then(res => {
-        removeUserFromScreen(userId);
-    })
-    .catch(err => console.log(err));
+        .delete(`https://crudcrud.com/api/42376893bb224ca5bcc867bbcb2d6fe8/appointmentData/${userId}`)
+        .then(res => {
+            removeUserFromScreen(userId);
+        })
+        .catch(err => console.log(err));
 }
 
 function removeUserFromScreen(userId)
@@ -113,9 +112,14 @@ function removeUserFromScreen(userId)
     }
 }
 
-function editUser(emailID,name)
-{
-    document.getElementById('name')= name;
-    document.getElementById('email')= emailID;
-    deleteUser(emailID);
+// function editUser(name, emailID) {
+//     document.getElementById('name').value = name;
+//     document.getElementById('email').value = emailID;
+//     deleteUser(emailID);
+// }
+
+function editUser(name, emailID, userId) {
+    document.getElementById('name').value = name;
+    document.getElementById('email').value = emailID;
+    deleteUser(userId);
 }
