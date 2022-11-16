@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form id="form">
+        <label for="exAmo">Choose Expense Amount:</label>
+        <input type="text" id="exAmo">
+        <label for="choDes">Choose Description:</label>
+        <input type="text" id="choDes">
+        <label for="choCat">Choose a Category:</label>
+        <select id="choCat">
+            <option value="food">Food</option>
+            <option value="fuel">Fuel</option>
+            <option value="electricity">Electricity</option>
+            <option value="movie">Movie</option>
+        </select>
+        <input type="submit" value="Add Expense">
+    </form>
+    <ul id="userList"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
+    <script src="expense.js"></script>
+</body>
+
+</html>
